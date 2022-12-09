@@ -1,16 +1,21 @@
-# This is a sample Python script.
+import cv2
+import numpy as np
+from numpy.lib.function_base import copy
+from GreenEye import Eagle
+# Подключение дополнительных модулей
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+cap = cv2.VideoCapture(r"road_Trim1.mp4")
 
+if not cap.isOpened():
+    print('не найдени файл')
+    exit()
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+while cv2.waitKey(1) != 27:
+    reading = val, img = cap.read()  # Чтение кадров
+    if not val:  # Если кадры кончились
+        print('Работа завершена')
+        exit()
+    try:
+        Eagle(reading)  # Создаем класс Eagle
+    except:
+        pass
